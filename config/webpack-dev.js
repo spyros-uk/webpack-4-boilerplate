@@ -69,15 +69,14 @@ module.exports = {
                       return true
                     },
                   },
-                ],
-                root: ".",
+                ]
               },
             },
           },
         ],
       },
       {
-        test: /\.(png|jpg|jpeg)/,
+        test: /\.(svg|png|jpg|jpeg|gif)/,
         use: {
           loader: "file-loader",
           options: {
