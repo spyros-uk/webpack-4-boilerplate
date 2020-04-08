@@ -1,0 +1,31 @@
+{
+  "name": "webpack-4-config",
+  "version": "1.0.0",
+  "description": "Configurations for Webpack 4",
+  "main": "index.js",
+  "scripts": {
+    "format": "npx prettier --write '**/*.+(js|jsx|ts|tsx|json|md)'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/spyros-uk/webpack-4-config.git"
+  },
+  "keywords": [
+    "webpack"
+  ],
+  "author": "Spyros Papaioannou",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/spyros-uk/webpack-4-config/issues"
+  },
+  "homepage": "https://github.com/spyros-uk/webpack-4-config#readme",
+  "devDependencies": {
+    "prettier": "^2.0.4",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "prettier": {
+    "semi": false
+  }
+}
