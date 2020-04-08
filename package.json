@@ -4,7 +4,7 @@
   "description": "Configurations for Webpack 4",
   "main": "index.js",
   "scripts": {
-    "start": "node scripts/dev.js",
+    "start": "npx babel-node scripts/serve.js",
     "serve:dev": "npx webpack-dev-server --config=config/webpack-dev.js",
     "build:dev": "npx webpack --config=config/webpack-dev.js",
     "format": "npx prettier --write '**/*.+(js|jsx|ts|tsx|json|md)'"
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
+    "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.5",
     "@babel/register": "^7.9.0",
     "babel-loader": "^8.1.0",
