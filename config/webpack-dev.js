@@ -2,9 +2,10 @@ const path = require("path")
 const webpack = require("webpack")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
+const htmlWebpackPlugin = require("html-webpack-plugin")
 
 module.exports = {
-  entry: ["webpack-hot-middleware/client", "./src/index.js"],
+  entry: ["webpack-hot-middleware/client?reload=true", "./src/index.js"],
   mode: "development",
   output: {
     filename: "bundle.js",
@@ -87,8 +88,13 @@ module.exports = {
       {
         from: "./public",
         to: "./",
+        ignore: ["index.html"],
       },
     ]),
-    new webpack.HotModuleReplacementPlugin()
+    new htmlWebpackPlugin({
+      inject: false,
+      template: "./public/index.html",
+    }),
+    new webpack.HotModuleReplacementPlugin(),
   ],
 }
