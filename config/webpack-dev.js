@@ -6,9 +6,30 @@ module.exports = {
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "../dist"),
-    publicPath: "/"
+    publicPath: "/",
   },
   devServer: {
-    contentBase: "public"
-  }
+    contentBase: "public",
+  },
+  module: {
+    rules: [
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].html",
+            },
+          },
+          {
+            loader: "extract-loader",
+          },
+          {
+            loader: "html-loader",
+          },
+        ],
+      },
+    ],
+  },
 }
