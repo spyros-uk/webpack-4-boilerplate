@@ -2,13 +2,6 @@
   "name": "webpack-4-config",
   "version": "1.0.0",
   "description": "Configurations for Webpack 4",
-  "main": "index.js",
-  "scripts": {
-    "start": "npx babel-node scripts/serve.js",
-    "serve:dev": "npx webpack-dev-server --config=config/webpack-dev.js",
-    "build:dev": "npx webpack --config=config/webpack-dev.js",
-    "format": "npx prettier --write '**/*.+(js|jsx|ts|tsx|json|md)'"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/spyros-uk/webpack-4-config.git"
@@ -22,6 +15,19 @@
     "url": "https://github.com/spyros-uk/webpack-4-config/issues"
   },
   "homepage": "https://github.com/spyros-uk/webpack-4-config#readme",
+  "main": "index.js",
+  "scripts": {
+    "start": "npx babel-node scripts/serve.js",
+    "serve:dev": "npx webpack-dev-server --config=config/webpack-dev.js",
+    "build:dev": "npx webpack --config=config/webpack-dev.js",
+    "format": "npx prettier --write '**/*.+(js|jsx|ts|tsx|json|md)'"
+  },
+  "prettier": {
+    "semi": false
+  },
+  "dependencies": {
+    "core-js": "3"
+  },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
@@ -43,8 +49,5 @@
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.10.3",
     "webpack-hot-middleware": "^2.25.0"
-  },
-  "prettier": {
-    "semi": false
   }
 }
