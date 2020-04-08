@@ -7,6 +7,7 @@ const htmlWebpackPlugin = require("html-webpack-plugin")
 module.exports = {
   entry: ["webpack-hot-middleware/client?reload=true", "./src/index.js"],
   mode: "development",
+  devtool: "source-map",
   output: {
     filename: "bundle.js",
     path: path.resolve(__dirname, "../dist"),
