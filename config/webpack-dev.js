@@ -1,9 +1,10 @@
 const path = require("path")
+const webpack = require("webpack")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: ["webpack-hot-middleware/client", "./src/index.js"],
   mode: "development",
   output: {
     filename: "bundle.js",
@@ -11,7 +12,16 @@ module.exports = {
     publicPath: "/",
   },
   devServer: {
+    hot: true,
+    inline: true,
+    overlay: {
+      warnings: true,
+      errors: true,
+    },
     contentBase: "public",
+    stats: {
+      colors: true,
+    },
   },
   module: {
     rules: [
@@ -76,8 +86,9 @@ module.exports = {
     new CopyPlugin([
       {
         from: "./public",
-        to: "./"
+        to: "./",
       },
     ]),
+    new webpack.HotModuleReplacementPlugin()
   ],
 }
