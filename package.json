@@ -23,6 +23,10 @@
   },
   "homepage": "https://github.com/spyros-uk/webpack-4-config#readme",
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
     "css-loader": "^3.5.1",
     "extract-loader": "^5.0.1",
     "file-loader": "^6.0.0",

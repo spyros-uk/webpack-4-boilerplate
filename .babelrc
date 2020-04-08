@@ -1,0 +1,14 @@
+{
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "debug": true,
+        "targets": {
+          "browsers": "last 2 versions"
+        },
+        "useBuiltIns": "usage"
+      }
+    ]
+  ]
+}
