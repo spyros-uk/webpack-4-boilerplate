@@ -3,6 +3,7 @@ const webpack = require("webpack")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
 const htmlWebpackPlugin = require("html-webpack-plugin")
+const Dotenv = require("dotenv-webpack")
 
 module.exports = {
   entry: ["webpack-hot-middleware/client?reload=true", "./src/index.js"],
@@ -97,5 +98,6 @@ module.exports = {
       template: "./public/index.html",
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new Dotenv(),
   ],
 }

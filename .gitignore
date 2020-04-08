@@ -1,9 +1,11 @@
 # Project related files
+.env
+dist/
 .cache/
 coverage/
 node_modules/
 *.log
-dist/
+
 # Editor's files
 .idea/
 
