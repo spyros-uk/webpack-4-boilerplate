@@ -1,28 +1,22 @@
 import express from "express"
+import webpack from "webpack"
+import webpackConfig from "../config/webpack-dev"
+import webpackDevMiddleware from "webpack-dev-middleware"
+
 const server = express()
-
-const webpack = require("webpack")
-const config = require("../config/webpack-dev")
-const compiler = webpack(config)
-
-const webpackDevMiddleware = require("webpack-dev-middleware")(
-  compiler,
-  config.devServer
+const compiler = webpack(webpackConfig)
+const middlewareArgs = [compiler, webpackConfig.devServer]
+const webpackMiddlewareDev = webpackDevMiddleware(...middlewareArgs)
+const webpackHMRMiddleware = require("webpack-hot-middleware")(
+  ...middlewareArgs
 )
-
-const webpackHotMiddlware = require("webpack-hot-middleware")(
-  compiler,
-  config.devServer
-)
-
-server.use(webpackDevMiddleware)
-server.use(webpackHotMiddlware)
-console.log("Middleware enabled")
-
-const staticMiddleware = express.static("dist")
-server.use(staticMiddleware)
-
+const expressStaticMiddleware = express.static("dist")
 const PORT = 8080
+
+server.use(webpackMiddlewareDev)
+server.use(webpackHMRMiddleware)
+server.use(expressStaticMiddleware)
+
 server.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`)
+  console.log(`Server listening on: http://localhost:${PORT}`)
 })
