@@ -17,10 +17,17 @@
   "homepage": "https://github.com/spyros-uk/webpack-4-config#readme",
   "main": "index.js",
   "scripts": {
-    "start": "npx nodemon --watch config --watch /scripts/serve --exec babel-node scripts/serve.js",
-    "serve:dev": "npx webpack-dev-server --config=config/webpack-dev.js",
-    "build:dev": "npx webpack --config=config/webpack-dev.js",
+    "start": "npm run serve:dev",
+    "serve:dev": "npx nodemon --inspect --watch",
+    "webpack:serve:dev": "npx webpack-dev-server --config=config/webpack-dev.js",
+    "webpack:build:dev": "npx webpack --config=config/webpack-dev.js",
     "format": "npx prettier --write '**/*.+(js|jsx|ts|tsx|json|md)'"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "./src/scripts/serve.js"
+    ],
+    "exec": "babel-node scripts/serve.js"
   },
   "prettier": {
     "semi": false
