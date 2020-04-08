@@ -1,4 +1,7 @@
 const path = require("path")
+const { CleanWebpackPlugin } = require("clean-webpack-plugin")
+const HtmlWebPackPlugin = require("html-webpack-plugin")
+const CopyPlugin = require("copy-webpack-plugin")
 
 module.exports = {
   entry: "./src/index.js",
@@ -16,7 +19,7 @@ module.exports = {
       {
         test: /\.js$/,
         use: { loader: "babel-loader" },
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
@@ -25,11 +28,6 @@ module.exports = {
       {
         test: /\.html$/,
         use: [
-          {
-            loader: "file-loader",
-            options: { name: "[name].html" },
-          },
-          { loader: "extract-loader" },
           {
             loader: "html-loader",
             options: {
@@ -55,25 +53,6 @@ module.exports = {
                     attribute: "data-srcset",
                     type: "srcset",
                   },
-                  {
-                    tag: "link",
-                    attribute: "href",
-                    type: "src",
-                    filter: (tag, attribute, attributes) => {
-                      if (!/stylesheet/i.test(attributes.rel)) {
-                        return false
-                      }
-
-                      if (
-                        attributes.type &&
-                        attributes.type.trim().toLowerCase() !== "text/css"
-                      ) {
-                        return false
-                      }
-
-                      return true
-                    },
-                  },
                 ],
               },
             },
@@ -82,13 +61,29 @@ module.exports = {
       },
       {
         test: /\.(svg|png|jpg|jpeg|gif)/,
-        use: {
-          loader: "file-loader",
-          options: {
-            name: "/assets/images/[name].[ext]",
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+            },
           },
-        },
+        ],
       },
     ],
   },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebPackPlugin({
+      template: "./public/index.html",
+      filename: "./index.html",
+    }),
+    new CopyPlugin([
+      {
+        from: "./public",
+        to: "./",
+        ignore: ["index.html"],
+      },
+    ]),
+  ],
 }
