@@ -4,6 +4,8 @@
   "description": "Configurations for Webpack 4",
   "main": "index.js",
   "scripts": {
+    "start": "npm run serve:dev",
+    "serve:dev": "npx webpack-dev-server --config=config/webpack-dev.js",
     "format": "npx prettier --write '**/*.+(js|jsx|ts|tsx|json|md)'"
   },
   "repository": {
