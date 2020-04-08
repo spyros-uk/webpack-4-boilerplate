@@ -1,9 +1,7 @@
 require("./main.css")
 require("../public/index.html")
-
-const foo = async () => {
-  const bar = Promise.resolve("baz")
-  console.log(await bar);
-}
-
-foo()
+import { foo } from "./example"
+;(async () => {
+  console.log(await Promise.resolve("main"))
+  foo()
+})()
