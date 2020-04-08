@@ -1,3 +1,19 @@
 html, body {
-    background: black;
+    margin: 0;
+
+    background: #0E1123;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100vw;
+    min-height: 100vh;
+}
+
+img {
+    width: 300px;
+    height: auto;
 }
