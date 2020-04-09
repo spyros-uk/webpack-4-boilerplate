@@ -97,6 +97,11 @@ module.exports = {
       template: "./public/index.html"
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new Dotenv()
+    new Dotenv(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("development")
+      }
+    })
   ]
 }
