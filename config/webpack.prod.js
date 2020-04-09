@@ -2,12 +2,13 @@ const path = require("path")
 const webpack = require("webpack")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
-const HtmlWebpackPlugin = require("html-webpack-plugin")
+const HtmlPlugin = require("html-webpack-plugin")
 const Dotenv = require("dotenv-webpack")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin")
-const UglifyjsWebpackPlugin = require("uglifyjs-webpack-plugin")
-const CompressionWebpackPlugin = require("compression-webpack-plugin")
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const UglifyjsPlugin = require("uglifyjs-webpack-plugin")
+const CompressionPlugin = require("compression-webpack-plugin")
+const BrotliPlugin = require("brotli-webpack-plugin")
 
 module.exports = {
   entry: ["./src/index.js"],
@@ -87,11 +88,16 @@ module.exports = {
         ignore: ["index.html"]
       }
     ]),
-    new OptimizeCssAssetsWebpackPlugin(),
+    new OptimizeCssAssetsPlugin({
+      assetNameRegExp: /\.css$/g,
+      cssProcessor: require("cssnano"),
+      cssProcessorOptions: { discardComments: { removeAll: true } },
+      canPrint: true
+    }),
     new MiniCssExtractPlugin({
       filename: "[name]-[contenthash].css"
     }),
-    new HtmlWebpackPlugin({
+    new HtmlPlugin({
       template: "./public/index.html"
     }),
     new Dotenv(),
@@ -100,7 +106,10 @@ module.exports = {
         NODE_ENV: JSON.stringify("production")
       }
     }),
-    new UglifyjsWebpackPlugin(),
-    new CompressionWebpackPlugin()
+    new UglifyjsPlugin(),
+    new CompressionPlugin({
+      algorithm: "gzip"
+    }),
+    new BrotliPlugin()
   ]
 }
