@@ -1,24 +1,14 @@
-const path = require("path")
 const webpack = require("webpack")
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const CopyPlugin = require("copy-webpack-plugin")
-const HtmlPlugin = require("html-webpack-plugin")
-const Dotenv = require("dotenv-webpack")
-const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
+const merge = require("webpack-merge")
+const common = require("./webpack.common.js")
+const BrotliPlugin = require("brotli-webpack-plugin")
 const UglifyjsPlugin = require("uglifyjs-webpack-plugin")
 const CompressionPlugin = require("compression-webpack-plugin")
-const BrotliPlugin = require("brotli-webpack-plugin")
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin")
 
-module.exports = {
-  entry: ["./src/index.js"],
+module.exports = merge.smart(common, {
   mode: "production",
-  devtool: "source-map",
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "../dist"),
-    publicPath: "/"
-  },
   module: {
     rules: [
       {
@@ -80,14 +70,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new CopyPlugin([
-      {
-        from: "./public",
-        to: "./",
-        ignore: ["index.html"]
-      }
-    ]),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /\.css$/g,
       cssProcessor: require("cssnano"),
@@ -95,12 +77,8 @@ module.exports = {
       canPrint: true
     }),
     new MiniCssExtractPlugin({
-      filename: "[name]-[contenthash].css"
+      filename: "[name].[ext]"
     }),
-    new HtmlPlugin({
-      template: "./public/index.html"
-    }),
-    new Dotenv(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("production")
@@ -112,4 +90,4 @@ module.exports = {
     }),
     new BrotliPlugin()
   ]
-}
+})

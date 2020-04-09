@@ -1,19 +1,9 @@
-const path = require("path")
 const webpack = require("webpack")
-const { CleanWebpackPlugin } = require("clean-webpack-plugin")
-const CopyPlugin = require("copy-webpack-plugin")
-const htmlWebpackPlugin = require("html-webpack-plugin")
-const Dotenv = require("dotenv-webpack")
+const merge = require("webpack-merge")
+const common = require("./webpack.common.js")
 
-module.exports = {
-  entry: ["./src/index.js"],
+module.exports = merge.smart(common, {
   mode: "development",
-  devtool: "source-map",
-  output: {
-    filename: "bundle.js",
-    path: path.resolve(__dirname, "../dist"),
-    publicPath: "/"
-  },
   devServer: {
     hot: true,
     inline: true,
@@ -85,23 +75,11 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new CopyPlugin([
-      {
-        from: "./public",
-        to: "./",
-        ignore: ["index.html"]
-      }
-    ]),
-    new htmlWebpackPlugin({
-      template: "./public/index.html"
-    }),
     new webpack.HotModuleReplacementPlugin(),
-    new Dotenv(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development")
       }
     })
   ]
-}
+})

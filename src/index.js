@@ -1,9 +1,9 @@
-require("./main.css")
+require("main.css")
 require("../public/index.html")
-import { foo } from "./example"
+import { foo } from "example"
 ;(async () => {
   console.log(await Promise.resolve("main"))
   foo()
 })()
 
-console.log('ENV:', process.env.NODE_ENV)
+console.log('env:', process.env.NODE_ENV)
