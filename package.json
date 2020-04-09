@@ -17,10 +17,9 @@
   "homepage": "https://github.com/spyros-uk/webpack-4-config#readme",
   "main": "index.js",
   "scripts": {
-    "start": "npm run serve",
-    "serve": "NODE_ENV=development npx nodemon --inspect --watch",
+    "start": "NODE_ENV=development npx nodemon --inspect --watch",
     "serve:dev": "NODE_ENV=development npx webpack-dev-server --config=config/webpack.dev.js",
-    "serve:prod": "NODE_ENV=production npx nodemon --watch config --watch /scripts/serve --exec babel-node scripts/serve.js",
+    "serve:prod": "NODE_ENV=production npx nodemon",
     "build:dev": "NODE_ENV=development npx webpack --config=config/webpack.dev.js",
     "build:prod": "NODE_ENV=production npx webpack --config=config/webpack.prod.js",
     "format": "npx prettier --write '**/*.+(js|jsx|ts|tsx|json|md)'"
