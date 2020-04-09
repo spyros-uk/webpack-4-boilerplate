@@ -1,6 +1,6 @@
 import express from "express"
 import webpack from "webpack"
-import webpackConfig from "../config/webpack-dev"
+import webpackConfig from "../config/webpack.dev"
 import webpackDevMiddleware from "webpack-dev-middleware"
 
 const server = express()
