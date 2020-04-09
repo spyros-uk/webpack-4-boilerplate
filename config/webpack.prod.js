@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin")
 const Dotenv = require("dotenv-webpack")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const OptimizeCssAssetsWebpackPlugin = require("optimize-css-assets-webpack-plugin")
+const UglifyjsWebpackPlugin = require("uglifyjs-webpack-plugin")
 
 module.exports = {
   entry: ["./src/index.js"],
@@ -97,6 +98,7 @@ module.exports = {
       "process.env": {
         NODE_ENV: JSON.stringify("production")
       }
-    })
+    }),
+    new UglifyjsWebpackPlugin()
   ]
 }
