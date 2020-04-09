@@ -22,6 +22,8 @@
     "serve:dev": "NODE_ENV=development npx webpack-dev-server --config=config/webpack.dev.js",
     "build:dev": "NODE_ENV=development npx webpack --config=config/webpack.dev.js",
     "build:prod": "NODE_ENV=production npx webpack --config=config/webpack.prod.js",
+    "test:unit": "jest",
+    "test:unit:watch": "jest --watch",
     "format": "npx prettier --write '**/*.+(js|jsx|ts|tsx|json|md)'"
   },
   "nodemonConfig": {
@@ -43,6 +45,7 @@
     "@babel/node": "^7.8.7",
     "@babel/preset-env": "^7.9.5",
     "@babel/register": "^7.9.0",
+    "babel-jest": "^25.3.0",
     "babel-loader": "^8.1.0",
     "brotli-webpack-plugin": "^1.1.0",
     "clean-webpack-plugin": "^3.0.0",
@@ -57,6 +60,7 @@
     "file-loader": "^6.0.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.0.4",
+    "jest": "^25.3.0",
     "mini-css-extract-plugin": "^0.9.0",
     "nodemon": "^2.0.2",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
