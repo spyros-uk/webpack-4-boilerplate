@@ -5,3 +5,5 @@ import { foo } from "./example"
   console.log(await Promise.resolve("main"))
   foo()
 })()
+
+console.log('ENV:', process.env.NODE_ENV)

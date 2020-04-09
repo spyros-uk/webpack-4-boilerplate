@@ -1,22 +1,34 @@
 import express from "express"
 import webpack from "webpack"
-import webpackConfig from "../config/webpack.dev"
+import webpackDevConfig from "../config/webpack.dev"
 import webpackDevMiddleware from "webpack-dev-middleware"
+import webpackHotMiddleware from "webpack-hot-middleware"
 
+const isProd = process.env.NODE_ENV === "production"
 const server = express()
-const compiler = webpack(webpackConfig)
-const middlewareArgs = [compiler, webpackConfig.devServer]
-const webpackMiddlewareDev = webpackDevMiddleware(...middlewareArgs)
-const webpackHMRMiddleware = require("webpack-hot-middleware")(
-  ...middlewareArgs
-)
-const expressStaticMiddleware = express.static("dist")
-const PORT = 8080
 
-server.use(webpackMiddlewareDev)
-server.use(webpackHMRMiddleware)
+if (!isProd) {
+  webpackDevConfig.entry.push("webpack-hot-middleware/client?reload=true")
+  const withMiddleware = (compiler, devServerConfig) => (middleware) =>
+    middleware(compiler, devServerConfig)
+  const useMiddleware = withMiddleware(
+    webpack(webpackDevConfig),
+    webpackDevConfig.devServer
+  )
+
+  const webpackMiddlewareDev = useMiddleware(webpackDevMiddleware)
+  server.use(webpackMiddlewareDev)
+
+  const webpackHMRMiddleware = useMiddleware(webpackHotMiddleware)
+  server.use(webpackHMRMiddleware)
+}
+
+const expressStaticMiddleware = express.static("dist")
 server.use(expressStaticMiddleware)
 
+const PORT = process.env.port || 3000
+
 server.listen(PORT, () => {
+  console.log("NODE_ENV:", process.env.NODE_ENV, isProd)
   console.log(`Server listening on: http://localhost:${PORT}`)
 })

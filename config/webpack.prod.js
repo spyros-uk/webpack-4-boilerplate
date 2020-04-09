@@ -1,4 +1,5 @@
 const path = require("path")
+const webpack = require("webpack")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 const CopyPlugin = require("copy-webpack-plugin")
 const HtmlWebpackPlugin = require("html-webpack-plugin")
@@ -24,7 +25,9 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: [{ loader: MiniCssExtractPlugin.loader }, { loader: "css-loader" }]
+        include: /src/,
+        sideEffects: true,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       },
       {
         test: /\.html$/,
@@ -83,11 +86,17 @@ module.exports = {
       }
     ]),
     new OptimizeCssAssetsWebpackPlugin(),
-    new MiniCssExtractPlugin(),
+    new MiniCssExtractPlugin({
+      filename: "[name]-[contenthash].css"
+    }),
     new HtmlWebpackPlugin({
-      inject: false,
       template: "./public/index.html"
     }),
-    new Dotenv()
+    new Dotenv(),
+    new webpack.DefinePlugin({
+      "process.env": {
+        NODE_ENV: JSON.stringify("production")
+      }
+    })
   ]
 }
