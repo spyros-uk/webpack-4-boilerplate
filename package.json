@@ -12,9 +12,9 @@
   "author": "Spyros Papaioannou",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/spyros-uk/webpack-4-config/issues"
+    "url": "https://github.com/spyros-uk/webpack-4-boilerplate/issues"
   },
-  "homepage": "https://github.com/spyros-uk/webpack-4-config#readme",
+  "homepage": "https://github.com/spyros-uk/webpack-4-boilerplate#readme",
   "main": "index.js",
   "scripts": {
     "start": "NODE_ENV=development npx nodemon --inspect --watch",
