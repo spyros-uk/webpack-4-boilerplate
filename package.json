@@ -17,7 +17,7 @@
   "homepage": "https://github.com/spyros-uk/webpack-4-boilerplate#readme",
   "main": "index.js",
   "scripts": {
-    "start": "NODE_ENV=development npx nodemon --inspect --watch",
+    "start": "NODE_ENV=development npx nodemon --inspect",
     "serve": "NODE_ENV=production npx nodemon",
     "serve:dev": "NODE_ENV=development npx webpack-dev-server --config=config/webpack.dev.js",
     "build:dev": "NODE_ENV=development npx webpack --config=config/webpack.dev.js",
@@ -26,7 +26,10 @@
   },
   "nodemonConfig": {
     "watch": [
-      "./src/scripts/serve.js"
+      "config",
+      "public",
+      "scripts",
+      "node_modules"
     ],
     "exec": "babel-node scripts/serve.js"
   },
