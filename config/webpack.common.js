@@ -1,5 +1,4 @@
 const path = require("path")
-const webpack = require("webpack")
 const Dotenv = require("dotenv-webpack")
 const CopyPlugin = require("copy-webpack-plugin")
 const HtmlPlugin = require("html-webpack-plugin")
@@ -28,7 +27,6 @@ module.exports = {
     ]),
     new HtmlPlugin({
       template: "./public/index.html"
-    }),
-    new webpack.HotModuleReplacementPlugin()
+    })
   ]
 }
