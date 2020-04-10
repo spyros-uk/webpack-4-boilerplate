@@ -9,7 +9,7 @@ const isProd = process.env.NODE_ENV === "production"
 const server = express()
 
 if (!isProd) {
-  webpackDevConfig.entry.push("webpack-hot-middleware/client?reload=true")
+  webpackDevConfig.entry.main.push("webpack-hot-middleware/client?reload=true")
   const withMiddleware = (compiler, devServerConfig) => (middleware) =>
     middleware(compiler, devServerConfig)
   const useMiddleware = withMiddleware(

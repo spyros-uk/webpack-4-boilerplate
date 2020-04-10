@@ -5,12 +5,28 @@ const HtmlPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
-  entry: ["./src/index.jsx"],
+  entry: {
+    main: ["./src/index.jsx"]
+  },
   devtool: "source-map",
   output: {
-    filename: "bundle.js",
+    filename: "[name]-bundle.js",
     path: path.resolve(__dirname, "../dist"),
     publicPath: "/"
+  },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+      automaticNameDelimiter: "-",
+      cacheGroups: {
+        vendor: {
+          name: "vendor",
+          test: /[\\/]node_modules[\\/]/,
+          chunks: "initial",
+          minChunks: 2
+        }
+      }
+    }
   },
   resolve: {
     modules: ["./src", "node_modules"],
