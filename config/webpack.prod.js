@@ -77,7 +77,7 @@ module.exports = merge.smart(common, {
       canPrint: true
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].[ext]"
+      filename: "[name].css"
     }),
     new webpack.DefinePlugin({
       "process.env": {

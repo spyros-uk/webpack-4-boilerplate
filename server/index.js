@@ -37,6 +37,5 @@ server.use(
 const PORT = process.env.port || 3000
 
 server.listen(PORT, () => {
-  console.log("NODE_ENV:", process.env.NODE_ENV, isProd)
   console.log(`Server listening on: http://localhost:${PORT}`)
 })

@@ -28,10 +28,10 @@
     "watch": [
       "config",
       "public",
-      "scripts",
+      "server",
       "node_modules"
     ],
-    "exec": "babel-node scripts/serve.js"
+    "exec": "babel-node server/index.js"
   },
   "prettier": {
     "semi": false,
