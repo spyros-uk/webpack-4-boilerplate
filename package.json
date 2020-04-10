@@ -31,6 +31,7 @@
       "scripts",
       "node_modules"
     ],
+    "ext": "css, js, jsx",
     "exec": "babel-node scripts/serve.js"
   },
   "prettier": {
@@ -72,6 +73,7 @@
     "style-loader": "^1.1.3",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.42.1",
+    "webpack-bundle-analyzer": "^3.6.1",
     "webpack-cli": "^3.3.11",
     "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.10.3",
