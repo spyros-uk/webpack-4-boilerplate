@@ -19,9 +19,9 @@ module.exports = merge.smart(common, {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         use: { loader: "babel-loader" },
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
         test: /\.css$/,
@@ -75,7 +75,6 @@ module.exports = merge.smart(common, {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
         NODE_ENV: JSON.stringify("development")

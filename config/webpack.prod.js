@@ -12,7 +12,7 @@ module.exports = merge.smart(common, {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js(x)$/,
         use: { loader: "babel-loader" },
         exclude: /node_modules/
       },

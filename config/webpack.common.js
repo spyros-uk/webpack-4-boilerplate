@@ -5,7 +5,7 @@ const HtmlPlugin = require("html-webpack-plugin")
 const { CleanWebpackPlugin } = require("clean-webpack-plugin")
 
 module.exports = {
-  entry: ["./src/index.js"],
+  entry: ["./src/index.jsx"],
   devtool: "source-map",
   output: {
     filename: "bundle.js",
@@ -13,7 +13,11 @@ module.exports = {
     publicPath: "/"
   },
   resolve: {
-    modules: ["./src", "node_modules"]
+    modules: ["./src", "node_modules"],
+    alias: {
+      "react-dom": "@hot-loader/react-dom"
+    },
+    extensions: [".js", ".jsx"]
   },
   plugins: [
     new Dotenv(),
