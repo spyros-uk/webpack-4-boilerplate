@@ -1,6 +1,7 @@
 const webpack = require("webpack")
 const merge = require("webpack-merge")
 const common = require("./webpack.common.js")
+const BundleAnalyzer = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 
 module.exports = merge.smart(common, {
   mode: "development",
@@ -21,7 +22,7 @@ module.exports = merge.smart(common, {
       {
         test: /\.(js|jsx)$/,
         use: { loader: "babel-loader" },
-        exclude: /node_modules/,
+        exclude: /node_modules/
       },
       {
         test: /\.css$/,
@@ -79,6 +80,9 @@ module.exports = merge.smart(common, {
       "process.env": {
         NODE_ENV: JSON.stringify("development")
       }
+    }),
+    new BundleAnalyzer({
+      generateStatsFile: true
     })
   ]
 })
